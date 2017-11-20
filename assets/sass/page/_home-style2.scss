@@ -1,0 +1,325 @@
+/*--------------------------------------------------------------
+	Home style 2
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+#2.0	services-section-s2
+--------------------------------------------------------------*/
+.services-section-s2 {
+	background-color: $section-bg-color;
+}
+
+
+/*--------------------------------------------------------------
+#2.1	about-us-section-s2
+--------------------------------------------------------------*/
+.about-us-section-s2 {
+	@extend .about-us-section;
+	background-color: $white;
+	position: relative;
+
+	&:before {
+		content: "";
+		background: url(../images/benefit-man.png) center center/cover no-repeat local;
+	    width: 333px;
+	    height: 970px;
+	    position: absolute;
+	    left: 15%;
+	    top: 50px;
+
+	    @include media-query(1199px) {
+	    	display: none;
+	    }
+	}
+
+	.left-col {
+		margin-bottom: 0;
+	}
+}
+
+
+/*--------------------------------------------------------------
+#2.2	benefit-section-s2
+--------------------------------------------------------------*/
+.benefit-section-s2 {
+	@extend .benefit-section;
+	padding-bottom: 50px;
+
+	.benefit-grids {
+		overflow: hidden;
+
+		.grid {
+			width: 50%;
+			float: left;
+			padding: 0 15px 0 90px;
+
+			@include media-query(991px) {
+				width: 100%;
+				float: none;
+			}
+
+			@include media-query(767px) {
+				padding: 0 15px 0 65px;
+			}
+		}
+	}
+
+	.container .benefit-grids > .grid  {
+		margin: 0 0 30px;
+	}
+}
+
+
+/*--------------------------------------------------------------
+#2.3	projects-section-s2
+--------------------------------------------------------------*/
+.project-section-s2 {
+	@extend .project-section;
+	padding-bottom: 100px;
+
+	@include media-query(991px) {
+		padding-bottom: 80px;
+	}
+
+	.projects-grids {
+		margin: 0;
+		overflow: visible;
+
+		> .grid {
+			width:100%;
+			float: none;
+			padding: 0;
+		}
+	}
+}
+
+
+/*--------------------------------------------------------------
+#2.4	testimonials-section-s2
+--------------------------------------------------------------*/
+.testimonials-section-s2 {
+	@include background-style("../images/pattern-3.jpg", left top, auto, repeat, local);
+	padding: 80px 0;
+
+	.testimonials-grids {
+		margin: 0 -15px;
+		overflow: hidden;
+
+		@include media-query(767px) {
+			margin: 0;
+		}
+	}
+
+	.testimonials-grids .grid {
+		width: 50%;
+		float: left;
+		padding: 0 15px;
+
+		@include media-query(767px) {
+			width: 100%;
+			float: none;
+		}
+	}
+
+	.testimonials-grids > .grid + .grid {
+		@include media-query(767px) {
+			margin-top: 45px;
+		}
+	}
+
+	.client-quote {
+		background-color: $white;
+		padding: 25px;
+		position: relative;
+
+		&:after {
+			content: "";
+			border-top: 24px solid $white;
+			border-right: 18px solid transparent;
+			position: absolute;
+			right: 24px;
+			bottom: -24px;
+
+			@include media-query(767px) {
+				right: auto;
+				border-top: 12px solid $white;
+				bottom: -12px;
+			}
+		}
+
+		p {
+			color: #505050;
+		}
+	}
+
+	.client-info {
+		overflow: hidden;
+		margin-top: 15px;
+
+		.client-pic,
+		.details {
+			display: inline-block;
+			float: left;
+		}
+	}
+
+	.client-pic {
+		margin-right: 20px;
+		@include media-query(767px) {
+			margin-right: 15px;
+		}
+	}
+
+	.client-pic img {
+		max-width: 65px;
+		border: 2px solid $white;
+		@include rounded-border();
+
+		@include media-query(767px) {
+			max-width: 60px;
+		}
+	}
+
+	.client-info .details {
+		margin-top: 12px;
+	}
+
+	.client-info .details h4 {
+		font-size: 16px;
+		font-size: calc-rem-value(16);
+		margin: 0;
+		text-transform: uppercase;
+
+		@include media-query(767px) {
+			font-size: 14px;
+			font-size: calc-rem-value(14);
+		}
+	}
+
+	.client-info .details span {
+		font-size: 14px;
+		font-size: calc-rem-value(14);
+		font-weight: 600;
+		color: $theme-primary-color;
+	}
+}
+
+
+/*--------------------------------------------------------------
+#2.5	contact-section-s2
+--------------------------------------------------------------*/
+.contact-section-s2 {
+	position: relative;
+	@include widther(1200px) {
+		padding: 0;
+	}
+
+	@include widther(1200px) {
+		&:before,
+		&:after {
+			content: "";
+			@include background-style("../images/contact-bg.jpg", 50% center, cover, no-repeat, local);
+			width: 48%;
+			height: 100%;
+			position: absolute;
+			right: 0;
+			top: 0;
+		}
+
+		&:after {
+			background: transparentize($black, 0.2);
+			z-index: 10;
+		}
+	}
+
+
+	.content {
+		@include widther(1200px) {
+			padding: 100px 0;
+		}
+	}
+
+	.why-our-service-better {
+		padding-left: 75px;
+		position: relative;
+		z-index: 11;
+
+		@include media-query(1199px) {
+			margin-top: 70px;
+			padding-left: 0;
+		}
+
+		h3 {
+			font-size: 24px;
+			font-size: calc-rem-value(24);
+			color: $white;
+			margin: 0 0 1.46em;
+
+			@include media-query(1199px) {
+				color: $heading-color;
+				margin: 0 0 1em;
+			}
+
+			@include media-query(1199px) {
+				font-size: 20px;
+				font-size: calc-rem-value(20);
+			}
+
+			span {
+				color: $theme-primary-color;
+			}
+		}
+
+		ul li {
+			color: $white;
+			line-height: 1.7em;
+			padding-left: 30px;
+			position: relative;
+
+			@include media-query(1199px) {
+				color: #383838;
+			}
+
+			&:before {
+				font-family: "FontAwesome";
+				content: "\f058";
+				color: $theme-primary-color;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		}
+
+		ul > li + li {
+			margin-top: 18px;
+		}
+	}
+}
+
+
+/*--------------------------------------------------------------
+#2.6	cta-s3
+--------------------------------------------------------------*/
+.cta-s3 {
+	@extend .cta-s2;
+	background: $theme-primary-color;
+
+	h3 {
+		color: $white;
+
+		span {
+			color: $white;
+		}
+	}
+
+	p {
+		color: $white;
+	}
+
+	.right-col ul li {
+		color: $black;
+
+		i {
+			color: $white;
+		}
+	}
+}

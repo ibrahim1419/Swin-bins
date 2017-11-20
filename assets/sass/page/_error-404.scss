@@ -1,0 +1,85 @@
+/*--------------------------------------------------------------
+	404 page
+----------------------------------------------------------------*/
+/*--------------------------------------------------------------
+#7.0 	error-404-section
+----------------------------------------------------------------*/
+.error-404-section .content {
+	@include widther(1200px) {
+		padding-right: 350px;
+	}
+
+	@include media-query(767px) {
+		text-align: center;
+	}
+
+	h2 {
+		font-size: 82px;
+		font-size: calc-rem-value(82);
+		color: $theme-primary-color;
+		margin: 0 0 0.2em;
+
+		@include media-query(991px) {
+			font-size: 60px;
+			font-size: calc-rem-value(60);
+		}
+
+		@include media-query(767px) {
+			font-size: 50px;
+			font-size: calc-rem-value(50);
+		}
+	}
+
+	h3 {
+		font-size: 24px;
+		font-size: calc-rem-value(24);
+		color: $theme-primary-color;
+		margin: 0 0 1.5em;
+
+		@include media-query(991px) {
+			font-size: 20px;
+			font-size: calc-rem-value(20);
+			line-height: 1.3em;
+		}
+
+		@include media-query(767px) {
+			font-size: 18px;
+			font-size: calc-rem-value(18);
+		}
+	}
+
+	p {
+		font-size: 18px;
+		font-size: calc-rem-value(18);
+		font-style: italic;
+		margin: 0 0 2em;
+
+		@include media-query(991px) {
+			font-size: 17px;
+			font-size: calc-rem-value(17);
+		}
+
+		@include media-query(767px) {
+			font-size: 16px;
+			font-size: calc-rem-value(16);
+		}
+	}
+
+	.icon {
+		position: absolute;
+		right: 0;
+		top: 50%;
+		@include translatingY();
+
+		@include media-query(767px) {
+			display: none;
+		}
+
+		i {
+			font-size: 150px;
+			font-size: calc-rem-value(150);
+			color: $theme-primary-color;
+			opacity: 0.2;
+		}
+	}
+}

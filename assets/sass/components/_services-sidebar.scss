@@ -1,0 +1,90 @@
+/*************************************
+	service sidebar
+***********************************/
+.services-sidebar {
+	@include widther(1200px) {
+		padding-right: 40px;
+	}
+
+	@include media-query(1199px) {
+		max-width: 350px;
+		margin-top: 80px;
+	}
+
+	.widget {
+
+		h3 {
+			margin: 0 0 0.6em;
+		}
+	}
+
+	> .widget + .widget {
+		margin-top: 55px;
+	}
+
+	/*** service-list widget ***/
+	.service-list-widget {
+		background-color: #f6f6f6;
+		border-left: 3px solid $theme-primary-color;
+	}
+
+	.service-list-widget ul > li {
+		border-bottom: 1px solid #e6e6e6;
+	}
+
+	.service-list-widget ul > li:last-child {
+		border-bottom: 0;
+	}
+
+	.service-list-widget ul li a {
+		font-family: $heading-font;
+		display: block;
+		font-size: 18px;
+		font-size: calc-rem-value(18);
+		font-weight: bold;
+		color: #636363;
+		padding: 10px 10px 10px 20px;
+		text-transform: capitalize;
+
+		@include media-query(991px) {
+			font-size: 16px;
+			font-size: calc-rem-value(16);
+		}
+	}
+
+	.service-list-widget ul .current a,
+	.service-list-widget ul li a:hover {
+		background-color: $theme-primary-color;
+		color: $white;
+	}
+
+	/*** contact widget ***/
+	.contact-widget {
+		background-color: $theme-primary-color;
+		padding: 50px 35px;
+
+		@include media-query(767px) {
+			padding: 35px 25px;
+		}
+
+		h3,
+		p {
+			color: $white;
+		}
+
+		h3 {
+			@include media-query(991px) {
+				font-size: 20px;
+				font-size: calc-rem-value(20);
+			}
+		}
+
+		> a {
+			@include widther(992px) {
+				height: 40px;
+				line-height: 40px;
+			}
+			margin-top: 15px;
+		}
+	}
+}

@@ -1,0 +1,8 @@
+/*
+All of the code within the ZingChart software is developed and copyrighted by ZingChart, Inc., and may not be copied,
+replicated, or used in any other software or application without prior permission from ZingChart. All usage must coincide with the
+ZingChart End User License Agreement which can be requested by email at support@zingchart.com.
+
+Build 2.6.1
+*/
+eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('T.21("1i");(1q(){6 a=1u;T.1w(1y,"1Z",1q(e){W(e.1H==="1b"){6 h=[],d;6 c=["x","y","z","d","o"];6 g=["1p"];1e(d=0;d<c.1h;d++){

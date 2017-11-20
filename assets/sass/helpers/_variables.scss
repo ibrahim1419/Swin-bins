@@ -1,0 +1,34 @@
+/*---------------------------
+	Fonts
+----------------------------*/
+// @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,700|Roboto:300i,400,500');
+@import url('https://fonts.googleapis.com/css?family=Alegreya:400,700|Source+Sans+Pro:400,400i,600');
+
+// fonts
+// $base-font: 'Roboto', sans-serif;
+// $heading-font: 'Roboto Slab', serif;
+
+$base-font: 'Source Sans Pro', sans-serif;
+$heading-font: 'Alegreya', serif;
+
+
+
+
+
+$base-font-size: 16;
+
+// color
+$dark-gray: #393939;
+$light-gray: #f8f8f8;
+$dray2: #969696;
+$dray3: #525252;
+$white: #fff;
+$black: #000;
+$green: #73b21a;
+
+$theme-primary-color: $green;
+$body-bg-color: $white;
+$section-bg-color: $light-gray;
+$text-color: $dray2;
+$heading-color: $dark-gray;
+$heading-color2: $dray3;

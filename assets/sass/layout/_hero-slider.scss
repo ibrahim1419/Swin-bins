@@ -1,0 +1,277 @@
+/*--------------------------------------------------------------
+#0.4	hero slider
+--------------------------------------------------------------*/
+.hero {
+	position: relative;
+	height: 700px;
+	overflow: hidden;
+
+	@include media-query(1199px) {
+		height: 600px;
+	}
+
+	@include media-query(991px) {
+		height: 500px;
+	}
+
+	@include media-query(767px) {
+		min-height: 420px;
+	}
+
+	.slide {
+		height: 700px;
+		position: relative;
+
+		@include media-query(1199px) {
+			height: 600px;
+		}
+
+		@include media-query(991px) {
+			height: 500px;
+		}
+
+		@include media-query(767px) {
+			min-height: 420px;
+		}
+
+		background-repeat: no-repeat;
+		position: relative;
+
+		.slider-bg {
+			display: none;
+		}
+
+		&:before {
+			content: "";
+			@include overlay(transparentize($black, 0.6));
+		}
+	}
+
+	.slide:focus {
+		outline: none;
+	}
+
+	.slide .container {
+		height: 100%;
+		display: table;
+		@include media-query(767px) {
+			padding: 0;
+		}
+	}
+
+	.slide .row {
+		display: table-cell;
+		vertical-align: middle;
+	}
+
+
+	/** slider controls **/
+	.slick-prev,
+	.slick-next {
+		background-color: transparentize($theme-primary-color, 0.7);
+		width: 50px;
+		height: 50px;
+		z-index: 10;
+		border: 2px solid $theme-primary-color;
+		opacity: 0;
+		visibility: hidden;
+		@include rounded-border();
+		@include transition-time(0.2s);
+
+		@include media-query(1315px) {
+			display: none !important;
+		}
+	}
+
+	.slick-prev {
+		left: 15px;
+
+		&:before {
+			font-family: "FontAwesome";
+			content: "\f104";
+			opacity: 1;
+		}
+	}
+
+	.slick-next {
+		right: 15px;
+
+		&:before {
+			font-family: "FontAwesome";
+			content: "\f105";
+			opacity: 1;
+		}
+	}
+
+	&:hover .slick-prev,
+	&:hover .slick-next {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	.slick-prev:hover,
+	.slick-next:hover {
+		background-color: $theme-primary-color;
+	}
+
+	// slider dots
+	.slick-dots {
+		bottom: 45px;
+		display: none !important;
+
+		@include media-query(1315px) {
+			display: block !important;
+		}
+
+		@include media-query(767px)  {
+			bottom: 30px;
+		}
+	}
+
+	.slick-dots .slick-active {
+		background-color: $theme-primary-color;
+	}
+
+	.slick-dots li {
+		background-color: transparentize($theme-primary-color, 0.9);
+	    width: 15px;
+	    height: 15px;
+	    margin: 0 12px 0 0;
+		position: relative;
+	    display: inline-block;
+	    border: 2px solid $white;
+	    @include rounded-border();
+
+		button {
+			font-size: 0;
+		    line-height: 0;
+		    display: block;
+		    width: 100%;
+		    height: 100%;
+		    cursor: pointer;
+		    color: transparent;
+		    border: 0;
+		    outline: none;
+		    background: transparent;
+		}
+
+		button:before {
+			display: none;
+		}
+	}
+
+	.hero-slider .slide-caption > h2 {
+		font-size: 45px;
+		font-size: calc-rem-value(45);
+		line-height: 1.2em;
+		margin: 0 0 0.8em;
+		text-transform: uppercase;
+
+		@include media-query(1199px) {
+			font-size: 40px;
+			font-size: calc-rem-value(40);
+		}
+
+		@include media-query(991px) {
+			font-size: 35px;
+			font-size: calc-rem-value(35);
+		}
+
+		@include media-query(767px) {
+			font-size: 30px;
+			font-size: calc-rem-value(30);
+		}
+
+		@include media-query(600px) {
+			font-size: 25px;
+			font-size: calc-rem-value(25);
+		}
+	}
+
+	.hero-slider .slide-caption > p {
+		font-size: 20px;
+		font-size: calc-rem-value(20);
+		font-style: italic;
+		margin-bottom: 2em;
+
+		@include media-query(991px) {
+			font-size: 18px;
+			font-size: calc-rem-value(18);
+		}
+
+		@include media-query(767px) {
+			font-size: 17px;
+			font-size: calc-rem-value(17);
+		}
+
+		@include media-query(600px) {
+			font-size: 16px;
+			font-size: calc-rem-value(16);
+		}
+	}
+
+	.hero-slider .btn-group > a:first-child {
+		margin-right: 5px;
+	}
+
+	/*** hero slider animation ***/
+	.hero-slider .slide-caption > h2,
+	.hero-slider .slide-caption > p,
+	.hero-slider .slide-caption > .btn-group {
+		color: $white;
+		opacity: 0;
+	}
+
+	.hero-slider .slick-list .slick-current .slide-caption > h2 {
+		-webkit-animation: fadeInLeftSlow 1.5s 0.8s forwards;
+		-moz-animation: fadeInLeftSlow 1.5s 0.8s forwards;
+		-o-animation: fadeInLeftSlow 1.5s 0.8s forwards;
+		-ms-animation: fadeInLeftSlow 1.5s 0.8s forwards;
+		animation: fadeInLeftSlow 1.5s 0.8s forwards;
+	}
+
+	.hero-slider .slick-list .slick-current .slide-caption > p {
+		-webkit-animation: fadeInLeftSlow 1.5s 1.4s forwards;
+		-moz-animation: fadeInLeftSlow 1.5s 1.4s forwards;
+		-o-animation: fadeInLeftSlow 1.5s 1.4s forwards;
+		-ms-animation: fadeInLeftSlow 1.5s 1.4s forwards;
+		animation: fadeInLeftSlow 1.5s 1.4s forwards;
+	}
+
+	.hero-slider .slick-list .slick-current .slide-caption > .btn-group {
+		-webkit-animation: fadeInLeftSlow 1.5s 2.2s forwards;
+		-moz-animation: fadeInLeftSlow 1.5s 2.2s forwards;
+		-o-animation: fadeInLeftSlow 1.5s 2.2s forwards;
+		-ms-animation: fadeInLeftSlow 1.5s 2.2s forwards;
+		animation: fadeInLeftSlow 1.5s 2.2s forwards;
+	}
+}
+
+.home-style-2 .hero {
+	@include widther(992px) {
+		margin-top: -80px;
+	}
+}
+
+
+.hero-slider-s2 .hero-slider .btn-group > a:last-child {
+	background-color: $white;
+	color: $heading-color;
+
+	&:hover {
+		color: $black;
+	}
+
+	&:hover:after {
+		color: $heading-color;
+	}
+}
+
+.hero-slider-s2 .hero-slider .btn-group > a:hover {
+	background-color: $white;
+	color: $black;
+
+	&:after {
+		color: $black;
+	}
+}

@@ -1,0 +1,99 @@
+/*--------------------------------------------------------------
+	service details
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+#4.0	service-details-content
+--------------------------------------------------------------*/
+.service-details-content {
+
+	.service-details-content > div {
+		margin-bottom: 60px;
+
+		@include media-query(991px) {
+			margin-bottom: 50px;
+		}
+
+		@include media-query(767px) {
+			margin-bottom: 45px;
+		}
+	}
+
+	.service-details-content > div:last-child {
+		margin-bottom: 0;
+	}
+
+	h2,
+	h3 {
+		margin: 0 0 0.8em;
+		text-transform: capitalize;
+	}
+
+	.service-details p {
+		margin-bottom: 20px;
+	}
+
+	.service-details h2 {
+		font-size: 28px;
+		font-size: calc-rem-value(28);
+		text-transform: uppercase;
+
+		@include media-query(991px) {
+			font-size: 24px;
+			font-size: calc-rem-value(24);
+			line-height: 1.3em;
+		}
+	}
+
+	.benefit-service h3,
+	.service-faq h3 {
+		color: $theme-primary-color;
+
+		@include media-query(991px) {
+			font-size: 20px;
+			font-size: calc-rem-value(20);
+		}
+	}
+
+	.benefit-service {
+		overflow: hidden;
+
+		.content {
+			width: 63%;
+			float: left;
+
+			@include media-query(767px) {
+				width: 100%;
+				float: none;
+			}
+		}
+
+		ul {
+			margin-top: 25px;
+		}
+
+		ul > li {
+			position: relative;
+			padding-left: 30px;
+		}
+
+		ul > li i {
+			position: absolute;
+			left: 0;
+			top: 4px;
+			color: $theme-primary-color;
+		}
+
+		ul > li + li {
+			margin-top: 12px;
+		}
+
+		.benefit-pic {
+			width: 35%;
+			float: right;
+
+			@include media-query(767px) {
+				display: none;
+			}
+		}
+	}
+}

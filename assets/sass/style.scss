@@ -1,0 +1,179 @@
+/*------------------------------------------------------------------
+[Master Stylesheet]
+Theme Name:
+Version:        1.0.0
+Author:         themexriver
+URL:            http://themeforest.net/user/themexriver
+-------------------------------------------------------------------*/
+
+
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+#0.1	Theme Reset Style
+#0.2	Global Elements
+#0.3	header
+#0.4	hero-slider
+#0.5	footer
+#0.6	cta
+#0.7	about-us-section
+#0.8	benefit-section
+#0.9	project-section
+#1.0	testimonials-section
+#1.1	contact-section
+#1.2	blog-section
+#1.3	cta-s2
+
+
+/*--------------------------------------------------------------
+	Home style 2
+----------------------------------------------------------------
+#2.0	services-section-s2
+#2.1	about-us-section-s2
+#2.2	benefit-section-s2
+#2.3	projects-section-s2
+#2.4	testimonials-section-s2
+#2.5	contact-section-s2
+#2.6	blog-section
+#2.7	services-section-s2
+#2.8	services-section-s2
+#2.9	services-section-s2
+
+
+/*--------------------------------------------------------------
+	Home style 3
+----------------------------------------------------------------
+#3.0	about-us-section-s3
+#3.1	contact-section-s3
+
+
+/*--------------------------------------------------------------
+	service details
+----------------------------------------------------------------
+#4.0	service-details-content
+
+
+/*--------------------------------------------------------------
+	Porject details
+----------------------------------------------------------------
+#5.0	project-details-content
+
+
+/*--------------------------------------------------------------
+	About page
+----------------------------------------------------------------
+#6.0	welcome-section
+#6.1	awards-section
+#6.2	team-members
+
+
+/*--------------------------------------------------------------
+	#404 page
+----------------------------------------------------------------
+#7.0 	error-404-section
+
+
+/*--------------------------------------------------------------
+	Testimonials pages
+----------------------------------------------------------------
+#8.0 	testimonials-pg-s1
+
+
+/*--------------------------------------------------------------
+	Team members page
+----------------------------------------------------------------
+#9.0 	team-members-pg
+
+
+/*--------------------------------------------------------------
+	blog pages
+----------------------------------------------------------------
+#10.0 	blog-grid-pg
+#10.1 	blog-width-sidebar-section
+#10.2 	blog-details
+
+
+/*--------------------------------------------------------------
+	No search result page
+----------------------------------------------------------------
+#11.0 	no-search-result-section
+
+
+/*--------------------------------------------------------------
+	Shop page
+----------------------------------------------------------------
+#12.0	shop-right-sidebar
+
+
+/*--------------------------------------------------------------
+	Shop details page
+----------------------------------------------------------------
+#13.0	shop-details-main-content
+#13.1	trending-items
+
+
+/*--------------------------------------------------------------
+	Services page
+----------------------------------------------------------------
+#14.0	all-services
+
+
+
+
+
+
+----------------------------------------------------------------*/
+
+// helpers
+@import "helpers/variables";
+@import "helpers/functions";
+@import "helpers/mixins";
+
+// base
+@import "base/base";
+
+// components
+@import "components/preloader";
+@import "components/section-title";
+@import "components/buttons";
+@import "components/form";
+@import "components/social-links";
+@import "components/page-title";
+@import "components/preloader";
+@import "components/slider-controls";
+@import "components/services-grid";
+@import "components/contact-form";
+@import "components/blog-grids";
+@import "components/accordion";
+@import "components/services-sidebar";
+@import "components/team-grids";
+@import "components/pagination";
+@import "components/blog-sidebar";
+@import "components/shop-sidebar";
+@import "components/shop-grids";
+
+// layout
+@import "layout/header";
+@import "layout/hero-slider";
+@import "layout/footer";
+
+// components
+@import "components/sticky-header";
+
+// page
+@import "page/home-default";
+@import "page/home-style2";
+@import "page/home-style3";
+@import "page/service-details";
+@import "page/project-details";
+@import "page/about";
+@import "page/error-404";
+@import "page/testimonials-pgs";
+@import "page/team-members";
+@import "page/blog-pages";
+@import "page/no-search-result";
+@import "page/shop";
+@import "page/shop-details";
+@import "page/services";
+
+

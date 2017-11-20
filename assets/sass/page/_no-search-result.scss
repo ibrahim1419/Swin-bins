@@ -1,0 +1,96 @@
+/*--------------------------------------------------------------
+	No search result page
+----------------------------------------------------------------*/
+/*--------------------------------------------------------------
+#11.0 	no-search-result-section
+----------------------------------------------------------------*/
+.no-search-result-section {
+	.search-content > h2 {
+		font-size: 30px;
+		font-size: calc-rem-value(30);
+		color: $theme-primary-color;
+		margin: 0 0 1em;
+
+		@include media-query(767px) {
+			font-size: 24px;
+			font-size: calc-rem-value(24);
+		}
+	}
+
+	.search-content > p {
+		font-size: 20px;
+		font-size: calc-rem-value(20);
+		font-style: italic;
+
+		@include widther(1200px) {
+			padding-right: 150px;
+		}
+
+		@include media-query(767px) {
+			font-size: 17px;
+			font-size: calc-rem-value(17);
+		}
+	}
+
+	.suggestions {
+		margin-top: 45px;
+
+		> h3 {
+			font-size: 22px;
+			font-size: calc-rem-value(22);
+			margin: 0 0 1em;
+
+			@include media-query(767px) {
+				font-size: 20px;
+				font-size: calc-rem-value(20);
+			}
+		}
+
+		ul li {
+			color: #767676;
+		}
+
+		ul > li + li {
+			margin-top: 12px;
+		}
+	}
+
+	.search-form {
+		margin-top: 20px;
+
+		@include widther(992px) {
+			max-width: 500px;
+		}
+
+		.form div {
+			position: relative;
+		}
+
+		.form input {
+			height: 40px;
+			border-color: #d8d8d8;
+
+			&:focus {
+				box-shadow: 0 0 2px $theme-primary-color;
+			}
+		}
+
+		button {
+			background-color: $theme-primary-color;
+			width: 40px;
+			height: 40px;
+			border: 0;
+			outline: 0;
+			color: #fff;
+			position: absolute;
+			right: 0;
+			top: 0;
+			@include transition-time(0.3s);
+		}
+
+		button:hover {
+			background-color: darken($theme-primary-color, 10%);
+			color: $white;
+		}
+	}
+}

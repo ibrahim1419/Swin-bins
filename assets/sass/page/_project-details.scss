@@ -1,0 +1,136 @@
+/*--------------------------------------------------------------
+	Porject details
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+#5.0	project-details-content
+--------------------------------------------------------------*/
+.project-details-content {
+
+	.details {
+		@include media-query(991px) {
+			margin-bottom: 60px;
+		}
+	}
+
+	.details h2 {
+		font-size: 30px;
+		font-size: calc-rem-value(30);
+		margin: 0 0 1em;
+		text-transform: uppercase;
+
+		@include media-query(991px) {
+			font-size: 26px;
+			font-size: calc-rem-value(26);
+		}
+
+		@include media-query(767px) {
+			font-size: 22px;
+			font-size: calc-rem-value(22);
+		}
+	}
+
+	.details > p {
+		margin-bottom: 20px;
+	}
+
+	.details > p:last-child {
+		margin-bottom: 0;
+	}
+
+	.problems h3,
+	.solution h3 {
+		font-size: 22px;
+		font-size: calc-rem-value(22);
+		color: $theme-primary-color;
+		margin: 0 0 0.8em;
+
+		@include media-query(767px) {
+			font-size: 20px;
+			font-size: calc-rem-value(20);
+		}
+	}
+
+	.problems,
+	.solution {
+		ul li {
+			position: relative;
+			padding-left: 30px;
+		}
+
+		ul > li + li {
+			margin-top: 8px;
+		}
+
+		ul li i {
+			position: absolute;
+			left: 0;
+			top: 4px;
+			color: $theme-primary-color;
+		}
+	}
+
+	.problems {
+		margin-bottom: 50px;
+	}
+
+	.bottom-row {
+		margin-top: 60px;
+	}
+
+	.client-quote {
+		@include media-query(991px) {
+			margin-top: 50px;
+		}
+
+		h3 {
+			margin: 0 0 1em;
+
+			@include media-query(767px) {
+				font-size: 20px;
+				font-size: calc-rem-value(20);
+			}
+
+		}
+	}
+
+	.project-client-quote-slider .grid {
+		padding: 25px;
+		border: 1px solid $theme-primary-color;
+	}
+
+	.project-client-quote-slider img {
+		width: auto;
+	}
+
+	.client-quote {
+	}
+
+	.client-info {
+		overflow: hidden;
+		margin-top: 25px;
+	}
+
+	.client-info .pic {
+		max-width: 65px;
+		float: left;
+
+		img {
+			@include rounded-border();
+			border: 2px solid $theme-primary-color;
+		}
+	}
+
+	.client-info .info {
+		padding-left: 80px;
+
+		h4 {
+			margin: 0.5em 0 0;
+		}
+
+		> span {
+			color: $theme-primary-color;
+			font-size: 14px;
+			font-size: calc-rem-value(14);
+		}
+	}
+}

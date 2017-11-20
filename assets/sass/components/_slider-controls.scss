@@ -1,0 +1,132 @@
+/**************************************
+	= slider controls styles
+***************************************/
+.top-arrow {
+	.owl-controls {
+		margin-top: 0;
+		position: absolute;
+		right: 0;
+		top: -60px;
+
+		@include media-query(767px) {
+			position: static;
+			margin-top: 40px;
+		}
+	}
+
+	.owl-controls .owl-nav {
+		position: relative;
+
+		&:before {
+			content: "";
+			background-color: $theme-primary-color;
+			width: 20px;
+			height: 100%;
+			position: absolute;
+			left: -7px;
+			top: 0;
+			@include skewingx(-20deg);
+
+			@include media-query(1199px) {
+				width: 15px;
+			}
+
+			@include media-query(767px) {
+				display: none;
+			}
+		}
+	}
+
+	.owl-controls .owl-nav .owl-prev,
+	.owl-controls .owl-nav .owl-next {
+		background-color: $theme-primary-color;
+		font-size: 20px;
+		margin: 0;
+		padding: 6px 15px;
+		@include rounded-border(0);
+		position: relative;
+		z-index: 10;
+
+		@include media-query(1199px) {
+			padding: 4px 13px;
+		}
+
+		@include media-query(767px) {
+			font-size: 16px;
+			padding: 6px 14px;
+		}
+
+		&:hover {
+			background-color: $theme-primary-color;
+		}
+	}
+
+	.owl-controls .owl-nav .owl-prev {
+		border-right: 1px solid darken($theme-primary-color, 4%);
+	}
+}
+
+/*** top arrow s2 ***/
+.top-arrow-s2 {
+	@extend .top-arrow;
+	.owl-controls .owl-nav:before {
+		display: none;
+	}
+
+	.owl-controls .owl-nav .owl-prev:hover,
+	.owl-controls .owl-nav .owl-next:hover {
+		background-color: darken($theme-primary-color, 4%);
+	}
+}
+
+/*** middle arrows ***/
+.middle-arrows {
+	.owl-controls {
+		width: 100%;
+		margin-top: 0;
+		position: absolute;
+		left: 0;
+		top: 50%;
+		@include translatingY();
+	}
+
+	.owl-controls .owl-nav {
+		position: relative;
+	}
+
+	.owl-controls .owl-nav .owl-prev,
+	.owl-controls .owl-nav .owl-next {
+		background-color: transparentize($black, 0.3);
+		font-size: 20px;
+		font-size: calc-rem-value(20);
+		margin: 0;
+		padding: 6px 15px;
+		@include rounded-border(0);
+		position: absolute;
+		top: 50%;
+		@include translatingY();
+		z-index: 10;
+
+		@include media-query(1199px) {
+			padding: 4px 13px;
+		}
+
+		@include media-query(767px) {
+			font-size: 16px;
+			padding: 6px 14px;
+		}
+
+		&:hover {
+			background-color: $black;
+		}
+	}
+
+	.owl-controls .owl-nav .owl-prev {
+		left: 0;
+	}
+
+	.owl-controls .owl-nav .owl-next {
+		right: 0;
+	}
+
+}

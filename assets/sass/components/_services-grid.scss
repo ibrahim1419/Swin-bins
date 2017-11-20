@@ -1,0 +1,36 @@
+/**************************************
+	= services grid
+***************************************/
+.services-gird {
+	.grid .img-holder {
+		margin-bottom: 35px;
+
+		@include media-query(767px) {
+			margin-bottom: 30px;
+		}
+	}
+
+	.grid h3 {
+		font-size: 19px;
+		font-size: calc-rem-value(19);
+		margin: 0 0 0.75em;
+		text-transform: capitalize;
+
+		@include media-query(1199px) {
+			font-size: 18px;
+			font-size: calc-rem-value(18);
+		}
+	}
+
+	.grid h3 a {
+		color: $heading-color2;
+
+		&:hover {
+			color: $theme-primary-color;
+		}
+	}
+
+	.grid .details p {
+		margin-bottom: 0;
+	}
+}

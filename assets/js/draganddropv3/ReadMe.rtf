@@ -1,0 +1,54 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww9000\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\f0\fs24 \cf0 Author for this code:     SOWebDesign.com\
+License:                          For commercial Use on Purchase\
+Credits:                           Jquery UI\
+Version 2\
+\
+CHANGES - \
+1. Save to cookie session has been added to list two so a cookie session is created and the array is saved per cookie session for a period of 7 days that can be customised.\
+\
+2. Changes to multiple column - two columns are now added for two separate lists. They can be connected together using javascript (instructions below) so each separate list can interact with each other.\
+\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\b \cf0 Installation\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\b0 \cf0 1. Unzip file and upload to sever\
+2. create a database and insert the sql from database.rtf file\
+3. amend the /lib/conn.php file to ensure the table and mysql connection details are correct and point to your database.\
+4. change the demo content as you see fit.\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\b \cf0 Customisation\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\b0 \cf0 \
+Each Section is clearly labelled so you can manipulate the coding yourself\
+\
+The files are found in:\
+\
+Formating: css/main.css\
+Javascript: js/jsfunctions.js\
+Database Insertion : save.php\
+Database Get List : lib/functions.php\
+\
+- Cookies\
+in order to use the cookies for your list, just copy the code from the jsfunctions.js file and add the id of the <UL> list you want to save to cookie to the setSelector section of the jsfunctions.js file. Be sure to label each of your <li> tags with an item ID (i.e. <li id="item-1">) as these values need to be saved to an array.\
+\
+- Multiple Columns\
+You can connect lists quickly and easily with this section. Take a look at the jsfunctions.js file. You will see that sortlistThree and sortlistFour are connected using a class "connectMe". Just add the id of the <ul> you want to connect int he jsfunctions.js file and then add the same class in your HTML to your UL list and away you go. To make it stand out a bit more add a different CSS format in the main.css file to get the different colour effects\
+\
+\
+\
+\
+Support: info@sowebdesign.com}

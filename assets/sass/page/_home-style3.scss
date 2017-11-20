@@ -1,0 +1,94 @@
+/*--------------------------------------------------------------
+	Home style 3
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+#3.0	about-us-section-s3
+--------------------------------------------------------------*/
+.about-us-section-s3 {
+	@extend .about-us-section;
+	padding-bottom: 80px;
+
+	@include media-query( 991px ) {
+        padding-bottom: 60px;
+    }
+
+	.awards {
+		overflow: hidden;
+		margin: 0 -10px;
+
+		.grid {
+			width: 50%;
+			float: left;
+			padding: 0 10px 20px;
+			text-align: center;
+
+			@include media-query(1199px) {
+				width: 25%;
+			}
+
+			@include media-query(991px) {
+				width: 50%;
+			}
+
+			@include media-query(550px) {
+				width: 100%;
+				float: none;
+			}
+		}
+
+		.inner {
+			background-color: $white;
+			padding: 30px;
+			position: relative;
+
+			&:before {
+				content: "";
+				width: 90%;
+				height: 86%;
+				border: 1px dashed $theme-primary-color;
+				position: absolute;
+				left: 5%;
+				top: 7%;
+			}
+		}
+
+		.award-img {
+			margin-bottom: 10px;
+		}
+
+		.award-img i:before {
+			font-size: 45px;
+			font-size: calc-rem-value(45);
+			color: $theme-primary-color;
+		}
+
+		h4 {
+			color: #545454;
+			margin: 0;
+
+			@include media-query(767px) {
+				font-size: 16px;
+				font-size: calc-rem-value(16);
+			}
+		}
+	}
+}
+
+
+/*--------------------------------------------------------------
+#3.1	contact-section-s3
+--------------------------------------------------------------*/
+.contact-section-s3 {
+	@extend .contact-section;
+	@include background-style("../images/contact-bg.jpg", center center, cover, no-repeat, fixed);
+
+	&:before {
+		content: "";
+		@include overlay(transparentize($theme-primary-color, 0.1));
+	}
+
+	.section-title-s3-white:after,
+	.section-title-s3-white:before {
+		background-color: $white;
+	}
+}

@@ -1,0 +1,181 @@
+/*--------------------------------------------------------------
+#0.5	footer
+--------------------------------------------------------------*/
+.site-footer {
+	@include background-style("../images/footer-bg.jpg", center center, cover, no-repeat, local);
+	position: relative;
+
+	&:before {
+		content: "";
+		@include overlay(transparentize($black, 0.7));
+
+		@include media-query(767px) {
+			@include overlay(transparentize($black, 0.3));
+		}
+	}
+
+	.upper-footer {
+		padding: 80px 0;
+
+		@include media-query(1199px) {
+			padding-bottom: 25px;
+		}
+
+		@include media-query(767px) {
+			padding: 70px 0;
+		}
+	}
+
+	.upper-footer .row > .col {
+		@include media-query(1199px) {
+			margin-bottom: 55px;
+		}
+	}
+
+	.upper-footer .row > .col:last-child {
+		@include media-query(767px) {
+			margin-bottom: 0;
+		}
+	}
+
+	.widget li,
+	.widget a,
+	.widget p {
+		font-size: 15px;
+		font-size: calc-rem-value(15);
+		color: #d2d2d2;
+	}
+
+	.widget > h3 {
+		font-size: 20px;
+		font-size: calc-rem-value(20);
+		color: $white;
+		padding-bottom: 0.7em;
+		margin: 0 0 1.4em;
+		text-transform: capitalize;
+		position: relative;
+
+		@include media-query(767px) {
+			font-size: 18px;
+			font-size: calc-rem-value(18);
+		}
+
+		&:after {
+			content: "";
+			background-color: $white;
+			width: 40px;
+			height: 2px;
+			position: absolute;
+			left: 0;
+			bottom: 0;
+		}
+	}
+
+	/*** about widget ***/
+	.about-widget {
+		@include widther(1200px) {
+			padding-right: 25px;
+		}
+	}
+
+	.social-links {
+		margin-top: 30px;
+	}
+
+	.social-links > li + li {
+		margin-left: 5px;
+	}
+
+	.social-links li a {
+		width: 32px;
+		height: 32px;
+		line-height: 32px;
+		text-align: center;
+		border: 1px solid $white;
+		@include rounded-border();
+		display: inline-block;
+	}
+
+	.social-links li a:hover {
+		background-color: $theme-primary-color;
+		color: $white;
+		border-color: $theme-primary-color;
+	}
+
+	/*** links widget ***/
+	.quick-links-widget .widget-nav-links,
+	.services-links-widget .widget-nav-links {
+		> li {
+			position: relative;
+			padding-left: 12px;
+
+			&:before {
+				font-family: "FontAwesome";
+				content: "\f105";
+				position: absolute;
+				left: 0;
+				top: -1px;
+			}
+		}
+
+		> li + li {
+			margin-top: 14px;
+
+			@include media-query(767px) {
+				margin-top: 10px;
+			}
+		}
+
+		a:hover {
+			color: $theme-primary-color;
+		}
+	}
+
+	/*** contact widget ***/
+	.contact-widget .contact-info li {
+		position: relative;
+		padding-left: 30px;
+		font-size: 16px;
+		font-size: calc-rem-value(16);
+
+		i {
+			font-size: 18px;
+			font-size: calc-rem-value(18);
+			color: $theme-primary-color;
+			position: absolute;
+			left: 0;
+			top: 1px;
+		}
+
+		span {
+			font-weight: 500;
+		}
+	}
+
+	.contact-widget .contact-info > li + li {
+		margin-top: 20px;
+	}
+
+	/*** copyright ***/
+
+	.copyright-text {
+		border-top: 1px solid #2f2f2f;
+		padding: 15px 0;
+	}
+
+	.copyright-text p {
+		font-size: 14px;
+		font-size: calc-rem-value(14);
+		color: #bfbfbf;
+		text-align: center;
+		margin: 0;
+	}
+}
+
+
+/*************************************
+	footer sytle 2
+***************************************/
+.site-footer-s2 {
+	@include background-image-with-color(#000, "../images/pattern-4.png", center center, auto, repeat, local);
+}
