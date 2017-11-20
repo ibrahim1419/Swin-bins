@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns   = "http://www.w3.org/ns/widgets"
+    xmlns:gap   = "http://phonegap.com/ns/1.0"
+    id          = "com.phonegap.example"
+    versionCode = "10"
+    version     = "1.0.0" >
+
+<!-- versionCode is optional and Android only -->
+
+  <name>Ibra</name>
+
+  <description>
+      
+  </description>
+
+  <author href="https://build.phonegap.com" email="ibrahimnazeer93@gmail.com">
+     Ibrahim Nazeer
+  </author>
+    <feature name="Geolocation">
+  <param name="android-package" value="org.apache.cordova.geolocation"/>
+</feature>
+  <plugin name="cordova-plugin-geolocation"    source="npm" spec="1.0.1" />
+  <gap:plugin name="cordova-plugin-whitelist" version="1.1.0" source="npm" />
+  <access origin="https://maps.googleapis.com/*" />
+  <access origin="*" launch-external="yes" />
+  <allow-navigation href="http://*/*" />
+  <allow-navigation href="https://*/*" />
+  <allow-navigation href="data:*" />
+
+</widget>

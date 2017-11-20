@@ -1,0 +1,667 @@
+<html>
+<head>
+	<title>Ibra App</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta charset="utf-8"/>
+	<link rel="stylesheet" href="themes/swin-binsmobile.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<meta http-equiv="Content-Security-Policy" content="
+	    default-src *; 
+	    style-src * 'unsafe-inline'; 
+	    script-src * 'unsafe-inline'; 
+	    media-src *; img-src * data:; 
+	" />
+	
+</head>
+<style>
+#directions-panel {
+        margin-top: 10px;
+        background-color: #FFEE77;
+        padding: 10px;
+        overflow: scroll;
+        height: 174px;
+      }
+</style>
+<style type="text/css">
+	
+</style>
+<body>
+
+<!-- Login Page -->
+	<div data-role="page" id="login">
+		<div data-role="header">
+			<h1>Login</h1>
+		</div><!-- /header -->
+
+		<div role="main" class="ui-content">
+			<p>
+				<br><br><br><br>
+				<label for="logo" style="text-align:center;"> <img src="images/logo.png" height="55"></img> </label><br>
+				<label for="username">Username:</label>
+				<input type="text" name="username" id="username" value="">
+
+				<label for="pass">Password:</label>
+				<input type="password" name="password" id="pass" value="">
+
+				<button onClick="return login()" class="ui-shadow ui-btn ui-corner-all">Login</button>
+
+			</p>
+		</div><!-- /content -->
+
+		<div data-role="footer" data-position="fixed">
+			<h4>Swin-bins Copyright 2017</h4>
+		</div><!-- /footer -->
+	</div><!-- /page -->
+<!-- Login Page -->
+
+<!-- Home Page -->
+<div data-role="page" id="home">
+
+		<div data-role="panel" id="mypanel" data-position="left" data-display="push">
+		    <!-- panel content goes here -->
+				<button class="ui-shadow ui-btn ui-corner-all">Home</button>
+
+
+		</div><!-- /panel -->
+
+
+		<div style="background-color:transparent;" data-role="header" data-position="fixed" data-fullscreen="true">
+			<a href="#mypanel"  class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-btn-icon-notext ui-icon-grid">&nbsp;</a>
+			
+			<h1></h1>
+		</div><!-- /header -->
+
+		<div style="margin:0; margin-top:-16px; padding:0;" role="main" class="ui-content">
+			<p>
+<script type="text/javascript">
+
+var logged_in=false;
+var user_id=false;
+var currPos;
+
+function login(){
+  var user=$('#username').val();
+  var pass=$('#pass').val();
+
+  if(user=="" || pass==""){alert("Enter Username/Password");return false;}
+  
+  showLoader('Logining In');
+
+
+  var request = $.ajax({
+    url: "http://swin-bins.com/api.php",
+    method: "POST",
+    data: { username : user, password: pass },
+    dataType: "html"
+  });
+   
+  request.done(function( msg ) {
+    //$( "#log" ).html( msg );
+    hideLoader();
+    msg=jQuery.parseJSON(msg);
+    
+
+    msg=msg.split(":");
+    
+    if(msg[0]==1){
+      logged_in=true;
+      user_id=msg[1];
+
+      
+    
+      changePage('home');
+      initialize();
+    }else{
+      alert("incorrect username/password");
+    }
+  });
+   
+  request.fail(function( jqXHR, textStatus ) {
+    alert( "Request failed: " + textStatus );
+  });
+}
+
+function changePage(x){
+  $.mobile.changePage("#"+x, {transition : "slide"}, false);
+}
+
+function showLoader(x){
+  var $this = $( this ),
+        theme = $this.jqmData( "theme" ) || $.mobile.loader.prototype.options.theme,
+        msgText = $this.jqmData( "msgtext" ) || $.mobile.loader.prototype.options.text,
+        textVisible = $this.jqmData( "textvisible" ) || $.mobile.loader.prototype.options.textVisible,
+        textonly = !!$this.jqmData( "textonly" );
+        html = $this.jqmData( "html" ) || "";
+    $.mobile.loading( "show", {
+            text: x,
+            textVisible: textVisible,
+            theme: theme,
+            textonly: textonly,
+            html: html
+    });
+}
+
+function hideLoader(){
+   $.mobile.loading( "hide" );
+}
+
+window.onload = function(){
+  setInterval(function(){
+    if(user_id){
+      return request_location();
+    }
+    },1000);
+}
+
+
+function request_location()
+{
+    // Get location info from browser and pass it to updating function
+     navigator.geolocation.getCurrentPosition(onSuccess);
+
+      navigator.geolocation.watchPosition(onSuccess,error,{enableHighAccuracy: true});
+}
+
+function onSuccess(position)
+{
+    currPos=position;
+  $.post("http://swin-bins.com/updatelocation.php",
+    {
+      uid : user_id,
+        latitude : position.coords.latitude,
+        longitude : position.coords.longitude
+        
+    },
+    function(){
+       
+        
+    });
+   
+}
+
+function error()
+{
+alert("Location not updated!");
+
+}
+
+
+
+
+
+
+</script>
+			<script type="text/javascript">
+
+
+var customLabel = {
+    A: {
+    label: ''
+    },
+    B: {
+    label: ''
+    }
+  };
+   var map;
+   var maks=[];
+   var markersArray = [];
+   var directionsService;
+   var directionsDisplay;
+
+  function initialize() {
+    myLatlng = new google.maps.LatLng(1.544765,110.365219);
+    mapOptions = {
+        zoom: 12,
+        center: myLatlng,
+		disableDefaultUI: true,
+    }
+    infoWindow = new google.maps.InfoWindow;
+    map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+     
+    xmlUrl = "http://www.swin-bins.com/markersuser.php";
+     
+    load(); 
+    }
+
+    function load() {
+        directionsService = new google.maps.DirectionsService;
+             directionsDisplay = new google.maps.DirectionsRenderer;      
+
+             directionsDisplay.setMap(map);
+
+      var infoWindow = new google.maps.InfoWindow;
+      // Change this depending on the name of your PHP or XML file
+      downloadUrl('http://www.swin-bins.com/markersuser.php?id='+user_id, function(data) {
+      
+        var xml = data.responseXML;
+        var markers = xml.documentElement.getElementsByTagName('marker');
+        
+        Array.prototype.forEach.call(markers, function(markerElem) {
+        
+          var id = markerElem.getAttribute('id');
+          var name = markerElem.getAttribute('name');
+          var address = markerElem.getAttribute('area');
+          var type = markerElem.getAttribute('type');
+          var fill = markerElem.getAttribute('fill');
+          var fillMax = markerElem.getAttribute('fillHeight');
+          var fillLevel = Math.trunc(((fillMax-fill)/fillMax) * 100);
+          var lastUpdated = markerElem.getAttribute('lastUpdate');
+          var zone = markerElem.getAttribute('zone');
+          var tags = markerElem.getAttribute('tags');
+          var battery = markerElem.getAttribute('tilt');
+          var time = markerElem.getAttribute('timeLastUpdate');
+          var point = new google.maps.LatLng(
+          parseFloat(markerElem.getAttribute('lat')),
+          parseFloat(markerElem.getAttribute('lng')));
+          
+          var infowincontent = document.createElement('div');
+          var strong = document.createElement('strong');
+          strong.textContent = name
+          infowincontent.appendChild(strong);
+          infowincontent.appendChild(document.createElement('br'));
+
+          var textName = document.createElement('text');
+          textName.textContent = ""+name;
+          infowincontent.appendChild(textName);
+          infowincontent.appendChild(document.createElement('br'));
+
+          var textID = document.createElement('text');
+          textID.textContent = "Bin ID: "+id;
+          infowincontent.appendChild(textID);
+          infowincontent.appendChild(document.createElement('br'));
+
+          var textType = document.createElement('text');
+          textType.textContent = "Bin type:</b> "+type;
+          infowincontent.appendChild(textType);
+          infowincontent.appendChild(document.createElement('br'));
+
+          var textFill = document.createElement('text');
+          textFill.textContent = ""+fillLevel+"%";
+          infowincontent.appendChild(textFill);
+          infowincontent.appendChild(document.createElement('br'));
+
+          var textbattery = document.createElement('text');
+          textbattery.textContent = ""+battery+" V";
+          infowincontent.appendChild(textbattery);
+          infowincontent.appendChild(document.createElement('br'));
+
+          var textLastUpdated = document.createElement('text');
+          textLastUpdated.textContent = ""+lastUpdated+","+time+"";
+          infowincontent.appendChild(textLastUpdated);
+          infowincontent.appendChild(document.createElement('br'));
+
+          var textLink = document.createElement('a');
+            textLink.setAttribute('href', '#');
+            textLink.onclick = function (e) { openModal(id); } 
+            textLink.textContent = "View graph";
+            infowincontent.appendChild(textLink);
+            infowincontent.appendChild(document.createElement('br'));  
+
+          //change icon based on fill level
+          var image ='http://swin-bins.com/bin_green.png';
+          if(fillLevel < 30){
+            image = 'http://swin-bins.com/bin_green.png';
+          }else if (fillLevel < 70){
+            image = 'http://swin-bins.com/bin_yellow.png';
+          }else{
+            image = 'http://swin-bins.com/bin_red.png';
+          }
+
+          var icon = customLabel[type] || {};
+          var marker = new google.maps.Marker({
+            map: map,
+            icon: image,
+            position: point,
+            label: icon.label,
+          });
+
+           marker.addListener('click', function() {            
+          });
+          markersArray.push(marker);
+
+
+         
+           maks.push(marker);
+			map.set('styles',
+
+            [
+                {
+                    "featureType": "administrative",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#444444"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "landscape",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "color": "#f2f2f2"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "saturation": -100
+                        },
+                        {
+                            "lightness": 45
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "visibility": "simplified"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.arterial",
+                    "elementType": "labels.icon",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "transit",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "water",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "color": "#73b21a"
+                        },
+                        {
+                            "visibility": "on"
+                        }
+                    ]
+                }
+            ]
+			);
+          
+                     
+        });
+
+            
+      });
+    document.getElementById('submit').addEventListener('click', function() {
+        calculateAndDisplayRoute(directionsService, directionsDisplay);
+        });
+    document.getElementById('submit2').addEventListener('click', function() {
+        calculateAndDisplayRoute1(directionsService, directionsDisplay);
+        });
+    document.getElementById('submit3').addEventListener('click', function() {
+        calculateAndDisplayRoute2(directionsService, directionsDisplay);
+        });
+
+
+	}
+  function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+      var xml;
+     var rmarkers=[];
+    
+        var waypts = [];    
+
+        downloadUrl('http://www.swin-bins.com/routemarker1.php?id='+user_id, function(data) {
+        
+         xml = data.responseXML;
+         
+         rmarkers = xml.documentElement.getElementsByTagName('routemarker');
+          
+          Array.prototype.forEach.call(rmarkers, function(markerElem) {
+        
+          var id = markerElem.getAttribute('id');
+          var rlat = markerElem.getAttribute('rlat');
+          var rlng = markerElem.getAttribute('rlng');
+          
+             waypts.push({
+              location: new google.maps.LatLng(rlat,rlng),
+              stopover: true
+            });
+          });
+       
+           
+       
+        var ori="";
+
+        if(currPos!=null){
+          ori=currPos.coords.latitude+","+currPos.coords.longitude;
+        }else{
+          ori="1.531,110.3442";
+        }
+          
+        directionsService.route({
+          origin: ori ,
+          destination: "1.484886,110.359715",
+          waypoints: waypts,
+          optimizeWaypoints: true,
+          travelMode: 'DRIVING'
+        }, function(response, status) {
+          if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+            var route = response.routes[0];
+            var summaryPanel = document.getElementById('directions-panel');
+            summaryPanel.innerHTML = '';
+            // For each route, display summary information.
+            for (var i = 0; i < route.legs.length; i++) {
+              var routeSegment = i + 1;
+              summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+                  '</b><br>';
+              summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+              summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+              summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+            }
+
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+
+
+ }); 
+      }
+      function calculateAndDisplayRoute1(directionsService, directionsDisplay) {
+      var xml;
+     var rmarkers=[];
+    
+        var waypts = [];    
+
+        downloadUrl('http://www.swin-bins.com/routemarkers2.php?id='+user_id, function(data) {
+        
+         xml = data.responseXML;
+         
+         rmarkers = xml.documentElement.getElementsByTagName('routemarker');
+          
+          Array.prototype.forEach.call(rmarkers, function(markerElem) {
+        
+          var id = markerElem.getAttribute('id');
+          var rlat = markerElem.getAttribute('rlat');
+          var rlng = markerElem.getAttribute('rlng');
+          
+             waypts.push({
+              location: new google.maps.LatLng(rlat,rlng),
+              stopover: true
+            });
+          });
+       
+           
+       
+        var ori="";
+
+        if(currPos!=null){
+          ori=currPos.coords.latitude+","+currPos.coords.longitude;
+        }else{
+          ori="1.531,110.3442";
+        }
+          
+        directionsService.route({
+          origin: ori ,
+          destination: "1.484886,110.359715",
+          waypoints: waypts,
+          optimizeWaypoints: true,
+          travelMode: 'DRIVING'
+        }, function(response, status) {
+          if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+            var route = response.routes[0];
+            var summaryPanel = document.getElementById('directions-panel');
+            summaryPanel.innerHTML = '';
+            // For each route, display summary information.
+            for (var i = 0; i < route.legs.length; i++) {
+              var routeSegment = i + 1;
+              summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+                  '</b><br>';
+              summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+              summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+              summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+            }
+
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+
+
+ }); 
+      }
+      function calculateAndDisplayRoute2(directionsService, directionsDisplay) {
+      var xml;
+     var rmarkers=[];
+    
+        var waypts = [];    
+
+        downloadUrl('http://www.swin-bins.com/routemarkers3.php?id='+user_id, function(data) {
+        
+         xml = data.responseXML;
+         
+         rmarkers = xml.documentElement.getElementsByTagName('routemarker');
+          
+          Array.prototype.forEach.call(rmarkers, function(markerElem) {
+        
+          var id = markerElem.getAttribute('id');
+          var rlat = markerElem.getAttribute('rlat');
+          var rlng = markerElem.getAttribute('rlng');
+          
+             waypts.push({
+              location: new google.maps.LatLng(rlat,rlng),
+              stopover: true
+            });
+          });
+       
+           
+       
+        var ori="";
+
+        if(currPos!=null){
+          ori=currPos.coords.latitude+","+currPos.coords.longitude;
+        }else{
+          ori="1.531,110.3442";
+        }
+          
+        directionsService.route({
+          origin: ori ,
+          destination: "1.484886,110.359715",
+          waypoints: waypts,
+          optimizeWaypoints: true,
+          travelMode: 'DRIVING'
+        }, function(response, status) {
+          if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+            var route = response.routes[0];
+            var summaryPanel = document.getElementById('directions-panel');
+            summaryPanel.innerHTML = '';
+            // For each route, display summary information.
+            for (var i = 0; i < route.legs.length; i++) {
+              var routeSegment = i + 1;
+              summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+                  '</b><br>';
+              summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+              summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+              summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+            }
+
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+
+
+ }); 
+      }
+	
+    function downloadUrl(url,callback) {
+    var request = window.ActiveXObject ?
+         new ActiveXObject('Microsoft.XMLHTTP') :
+         new XMLHttpRequest;
+     
+    request.onreadystatechange = function() {
+        if (request.readyState == 4) {
+            //request.onreadystatechange = doNothing;
+            callback(request, request.status);
+        }
+    };
+     
+    request.open('GET', url, true);
+    request.send(null);
+}
+
+  function doNothing() {}
+</script>
+						<script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDR0GuQYKHGTmW1od33386_4VEutp-odc&sensor=true&callback=initialize"></script>
+
+				<!-- Content Goes here -->
+				<div style="width:100%; height:100%; position:absolute;" id="map_canvas"></div>
+        <div id="directions-panel"></div>
+				 <button  id="submit2" style="position: fixed; bottom:20; left:14%; width:100px; z-index: 1000; background-color:transparent;">30%</button>
+         <button  id="submit" style="position: fixed; bottom:20; left:39%; width:100px; z-index: 1000; background-color:transparent;">50%</button>
+         <button  id="submit3" style="position: fixed; bottom:20; left:64%; width:100px; z-index: 1000; background-color:transparent;">75%</button>
+        
+				
+			</p>
+		</div><!-- /content -->
+				
+			</p>
+		</div><!-- /content -->
+
+		<div data-role="footer" data-position="fixed">
+			<h4>Swinbins copyright 2017</h4>
+		</div><!-- /footer -->
+	</div><!-- /page -->
+<!-- Home Page -->
+
+</body>
+</html>
+
+
+
